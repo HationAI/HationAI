@@ -1,0 +1,6 @@
+{
+  "name": "Hation",
+  "description": "An intelligent AI receptionist that handles calls, books appointments, answers service questions, and supports the front desk 24/7.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
