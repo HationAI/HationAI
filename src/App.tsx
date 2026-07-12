@@ -4,6 +4,7 @@
  */
 
 import React, { useState } from "react";
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import VideoDemo from "./components/VideoDemo";
@@ -75,6 +76,9 @@ export default function App() {
 
       {/* Interactive Scheduling Overlay Modal */}
       <DemoModal isOpen={isDemoModalOpen} onClose={closeDemoModal} />
+
+      {/* Vercel Speed Insights */}
+      <SpeedInsights />
 
       {/* Clean Footer */}
       <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-900" id="global-footer">
