@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "motion/react";
-import { PlayCircle, ShieldCheck, Mail, Database, Zap, FileVideo, Youtube } from "lucide-react";
+import { PlayCircle, Mail, Database, Zap } from "lucide-react";
 
 export default function VideoDemo() {
-  const [playMode, setPlayMode] = useState<"file" | "youtube">("youtube");
-
   return (
     <section className="bg-slate-50 py-16 sm:py-24 border-b border-slate-100" id="video-demo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,7 +34,7 @@ export default function VideoDemo() {
               className="w-full max-w-2xl bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden"
               id="browser-frame-mockup"
             >
-              {/* Browser bar with Mode Toggle */}
+              {/* Browser bar with Address */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-4 py-3 bg-slate-900 border-b border-slate-800">
                 <div className="flex items-center gap-1.5">
                   <div className="w-3 h-3 bg-red-500 rounded-full opacity-70" />
@@ -46,73 +44,19 @@ export default function VideoDemo() {
                     hation-demo.ai/play
                   </div>
                 </div>
-
-                {/* Player Mode Switcher */}
-                <div className="flex bg-slate-950 p-1 rounded-lg border border-slate-800 self-end sm:self-auto">
-                  <button
-                    onClick={() => setPlayMode("file")}
-                    className={`flex items-center gap-1 px-2.5 py-1 text-xs rounded-md transition-all ${
-                      playMode === "file"
-                        ? "bg-blue-600 text-white font-medium shadow-sm"
-                        : "text-slate-400 hover:text-slate-200"
-                    }`}
-                    title="Play uploaded MP4 file"
-                    id="toggle-file-player"
-                  >
-                    <FileVideo className="w-3.5 h-3.5" />
-                    <span>Uploaded Video</span>
-                  </button>
-                  <button
-                    onClick={() => setPlayMode("youtube")}
-                    className={`flex items-center gap-1 px-2.5 py-1 text-xs rounded-md transition-all ${
-                      playMode === "youtube"
-                        ? "bg-blue-600 text-white font-medium shadow-sm"
-                        : "text-slate-400 hover:text-slate-200"
-                    }`}
-                    title="Play YouTube embed video"
-                    id="toggle-youtube-player"
-                  >
-                    <Youtube className="w-3.5 h-3.5" />
-                    <span>YouTube Embed</span>
-                  </button>
-                </div>
               </div>
 
               {/* Video Area */}
               <div className="relative aspect-video bg-slate-900" id="video-wrapper">
-                {playMode === "file" ? (
-                  <>
-                    <video
-                      className="w-full h-full object-cover"
-                      controls
-                      preload="metadata"
-                      playsInline
-                      id="demo-native-video"
-                      poster="/chatbot.jpg"
-                    >
-                      <source src="/hation_demo.mp4" type="video/mp4" />
-                      <source src="/demo.mp4" type="video/mp4" />
-                      <source src="/hation_demo.webm" type="video/webm" />
-                      Your browser does not support the video tag.
-                    </video>
-
-                    {/* Clear instructions overlay if video is not loaded yet */}
-                    <div className="absolute bottom-2 left-2 right-2 bg-slate-950/80 backdrop-blur-sm border border-slate-800/80 px-3 py-1.5 rounded-lg text-[10px] text-slate-400 font-mono flex items-center justify-between select-none pointer-events-none sm:text-xs">
-                      <span>Playing: User Demo Video (hation_demo.mp4)</span>
-                      <span className="text-blue-400">Upload to /public folder to play your own video</span>
-                    </div>
-                  </>
-                ) : (
-                  <iframe
-                    src="https://www.youtube.com/embed/sduPEbEBBAs"
-                    title="Hation Receptionist Video Demo"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    className="w-full h-full"
-                    id="demo-youtube-iframe"
-                  ></iframe>
-                )}
+                <iframe
+                  src="https://www.youtube.com/embed/sduPEbEBBAs"
+                  title="Hation Receptionist Video Demo"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="w-full h-full"
+                  id="demo-youtube-iframe"
+                ></iframe>
               </div>
             </motion.div>
           </div>

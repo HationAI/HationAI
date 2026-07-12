@@ -1,56 +1,20 @@
-# 🤖 AI Chatbot Developer for Small Businesses
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+</div>
 
-Welcome to my portfolio! I'm an AI Chatbot Developer focused on helping small businesses automate customer interactions, generate more leads, schedule appointments, and improve customer satisfaction using AI-powered conversational solutions.
+# Run and deploy your AI Studio app
 
-## 🚀 What I Do
+This contains everything you need to run your app locally.
 
-I build intelligent AI chatbots that help businesses:
+View your app in AI Studio: https://ai.studio/apps/f08d15f0-36fb-49c7-9471-4c02f0cf8df6
 
-- 📈 Generate and qualify leads 24/7
-- 📅 Automatically schedule appointments
-- 💬 Answer customer questions instantly
-- 🤝 Improve customer engagement and satisfaction
-- ⚡ Automate repetitive customer support tasks
-- 🔗 Integrate with websites, CRMs, calendars, and messaging platforms
+## Run Locally
 
-## 💼 Services
-
-- Custom AI Chatbot Development
-- Website Chatbots
-- Lead Qualification Bots
-- Appointment Booking Automation
-- Customer Support Automation
-- FAQ Bots
-- CRM & API Integrations
-- AI Workflow Automation
-
-## 🎯 My Goal
-
-I help small businesses save time, increase conversions, and deliver exceptional customer experiences through AI automation.
-
-Whether it's capturing leads after business hours or booking appointments automatically, I create AI solutions that work around the clock.
-
-## 🌟 Why AI Chatbots?
-
-- Available 24/7
-- Never miss a lead
-- Reduce response times
-- Increase appointment bookings
-- Improve customer satisfaction
-- Lower support costs
-
-## 📫 Let's Connect
-
-If you're looking to automate your business with AI or have a project in mind, feel free to reach out!
-
-- LinkedIn: https://www.linkedin.com/in/nikita-slobozhaniuk-8b39bb41b
-- Portfolio: *Add your website*
-- Email: hation.chatbot@gmail.com
----
-
-⭐ If you like my work, consider giving this repository a star!
-This version is optimized for GitHub, clearly communicates your value proposition, and is tailored to attract small business clients looking for AI chatbot solutions.
+**Prerequisites:**  Node.js
 
 
-
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
    `npm run dev`

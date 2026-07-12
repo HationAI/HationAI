@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Clock, Settings } from "lucide-react";
+import { X, Clock } from "lucide-react";
 
 interface DemoModalProps {
   isOpen: boolean;
@@ -9,18 +9,7 @@ interface DemoModalProps {
 
 export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
   const [iframeLoading, setIframeLoading] = useState(true);
-  const [showSettings, setShowSettings] = useState(false);
   const DEFAULT_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfq96jah2H-e49_1H57N3goCboNw0Vgw1hyxs1LCFxIKLLhLA/viewform?usp=sharing&ouid=103729970888147869513";
-  
-  const [currentUrl, setCurrentUrl] = useState(() => {
-    return localStorage.getItem("hation_form_url") || DEFAULT_FORM_URL;
-  });
-  const [tempUrl, setTempUrl] = useState(currentUrl);
-
-  // Keep tempUrl in sync with currentUrl if it changes
-  useEffect(() => {
-    setTempUrl(currentUrl);
-  }, [currentUrl]);
 
   // If the URL is a Google Form URL, ensure we can make it look clean if possible
   const getEmbeddedUrl = (url: string) => {
@@ -36,23 +25,6 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
     } catch (e) {
       return url;
     }
-  };
-
-  const handleSaveSettings = () => {
-    const trimmed = tempUrl.trim();
-    if (trimmed) {
-      localStorage.setItem("hation_form_url", trimmed);
-      setCurrentUrl(trimmed);
-      setIframeLoading(true);
-      setShowSettings(false);
-    }
-  };
-
-  const handleResetSettings = () => {
-    localStorage.removeItem("hation_form_url");
-    setCurrentUrl(DEFAULT_FORM_URL);
-    setIframeLoading(true);
-    setShowSettings(false);
   };
 
   // Reset loading state when the modal opens
@@ -105,24 +77,10 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
               </div>
 
               <div className="flex items-center gap-2">
-                {/* Settings Toggle Button */}
-                <button
-                  onClick={() => setShowSettings(!showSettings)}
-                  className={`px-3.5 py-2 rounded-xl flex items-center gap-1.5 text-xs font-semibold border transition-all duration-200 cursor-pointer ${
-                    showSettings
-                      ? "bg-blue-50 text-blue-600 border-blue-200 shadow-xs"
-                      : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-slate-900 hover:border-slate-300"
-                  }`}
-                  id="modal-settings-btn"
-                >
-                  <Settings className="w-4 h-4" />
-                  <span className="hidden sm:inline">Connect My Form</span>
-                </button>
-
                 {/* Close Button */}
                 <button
                   onClick={onClose}
-                  className="p-2 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
+                  className="p-2 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer"
                   aria-label="Close modal"
                   id="modal-close-btn"
                 >
@@ -130,59 +88,6 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                 </button>
               </div>
             </div>
-
-            {/* Settings Expandable Panel */}
-            <AnimatePresence>
-              {showSettings && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.25, ease: "easeInOut" }}
-                  className="bg-slate-50 border-b border-slate-100 overflow-hidden"
-                  id="modal-settings-panel"
-                >
-                  <div className="px-6 py-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div className="flex-1">
-                      <h4 className="text-sm font-bold text-slate-900 tracking-tight">
-                        Integrate Your Custom Request Form
-                      </h4>
-                      <p className="text-xs text-slate-500 mt-1">
-                        Input your custom Google Form or other calendar scheduling URL below to route appointments directly.
-                      </p>
-                    </div>
-                    <div className="flex flex-wrap items-center gap-2.5 w-full md:w-auto">
-                      <div className="relative flex-1 min-w-[200px] sm:w-80">
-                        <input
-                          type="text"
-                          value={tempUrl}
-                          onChange={(e) => setTempUrl(e.target.value)}
-                          placeholder="https://docs.google.com/forms/..."
-                          className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl bg-white focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 text-slate-800 font-medium transition-all shadow-xs"
-                          id="settings-form-input"
-                        />
-                      </div>
-                      <button
-                        onClick={handleSaveSettings}
-                        className="px-4 py-2 text-xs bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 active:bg-blue-800 transition-colors shadow-sm whitespace-nowrap cursor-pointer"
-                        id="settings-save-btn"
-                      >
-                        Apply Form
-                      </button>
-                      {currentUrl !== DEFAULT_FORM_URL && (
-                        <button
-                          onClick={handleResetSettings}
-                          className="px-3 py-2 text-xs text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-xl transition-all font-semibold cursor-pointer"
-                          id="settings-reset-btn"
-                        >
-                          Reset
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
 
             {/* Content Body: Form Frame */}
             <div className="flex-1 bg-slate-50 relative flex flex-col" id="modal-container-body">
@@ -198,7 +103,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                 )}
 
                 <iframe
-                  src={getEmbeddedUrl(currentUrl)}
+                  src={getEmbeddedUrl(DEFAULT_FORM_URL)}
                   width="100%"
                   height="100%"
                   className="w-full h-full border-none"
