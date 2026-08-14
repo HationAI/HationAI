@@ -25,7 +25,7 @@ Our systems connect to WMS platforms, classify intent, look up real shipment dat
 
 ## Featured projects
 
-### 🤖 [3PL AI Tools](https://github.com/HationAI/3pl-ai-tools) *(public)*
+### 🤖 [3PL AI Tools](https://github.com/HationAI/3pl-ai-tools) 
 Portfolio showcase of the core AI pipeline and an interactive ROI calculator.
 
 - **Pipeline demo** — Next.js playground: intent → WMS lookup → reply draft (mocked offline by default; live Groq mode available)
@@ -39,7 +39,7 @@ cd 3pl-ai-tools && npm run install:all && npm run dev
 # → http://localhost:3000
 ```
 
-### 🔌 Production system (private)
+### 🔌 Production system 
 
 | Repo | Role |
 |------|------|
@@ -55,7 +55,7 @@ cd 3pl-ai-tools && npm run install:all && npm run dev
 - Production credential gate (no plaintext ShipStation fallback)
 - Optional PII-free Slack failure alerts
 
-### 🌐 [hation-ai-web](https://github.com/HationAI/hation-ai-web) *(public)*
+### 🌐 [hation-ai-web](https://github.com/HationAI/hation-ai-web) 
 Marketing / product site (Vite + React + Tailwind).
 
 ---
